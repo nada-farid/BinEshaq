@@ -9,11 +9,6 @@ use Illuminate\Http\Response;
 
 class StoreEmploymentRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return Gate::allows('employment_create');
-    }
-
     public function rules()
     {
         return [
@@ -24,7 +19,9 @@ class StoreEmploymentRequest extends FormRequest
             'phone' => [
                 'string',
                 'required',
-            ],
+                'size:10',
+                'regex:/(05)[0-9]{8}/', 
+            ],  
             'email' => [
                 'required',
             ],

@@ -52,11 +52,12 @@ class AboutUs extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
-
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview2')->fit('crop', 445, 528);
+        $this->addMediaConversion('logo')->fit('crop', 275, 67);
     }
 
     public function getPhoteAttribute()
@@ -66,6 +67,7 @@ class AboutUs extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->preview2   = $file->getUrl('preview2');
         }
 
         return $file;
@@ -78,6 +80,7 @@ class AboutUs extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->logo   = $file->getUrl('logo');
         }
 
         return $file;

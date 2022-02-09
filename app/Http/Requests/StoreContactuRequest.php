@@ -9,10 +9,6 @@ use Illuminate\Http\Response;
 
 class StoreContactuRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return Gate::allows('contactu_create');
-    }
 
     public function rules()
     {
@@ -27,7 +23,10 @@ class StoreContactuRequest extends FormRequest
             'phone' => [
                 'string',
                 'required',
-            ],
+                'size:10',
+                'regex:/(05)[0-9]{8}/', 
+            
+            ],  
             'title' => [
                 'string',
                 'required',

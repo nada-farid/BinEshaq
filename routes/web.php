@@ -1,6 +1,5 @@
 <?php
 
-Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -98,3 +97,29 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
 });
+//-----------------------------------------------------------
+  //frontend routes
+  Route::group([ 'as' => 'frontend.', 'namespace' => 'Frontend'],function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/contact', 'ContactusController@index')->name('contact');
+        Route::post('/contact_store', 'ContactusController@store')->name('contact.store');
+        Route::get('/target', 'AboutController@target')->name('target');
+        Route::get('/vision', 'AboutController@vision')->name('vision');
+        Route::get('/services', 'ServiceController@index')->name('services');
+        Route::get('/service/{id}', 'ServiceController@show')->name('service');
+        Route::get('/products', 'ProductController@index')->name('products');
+        Route::get('/projects', 'ProjectController@index')->name('projects');
+        Route::get('/project/{id}', 'ProjectController@show')->name('project');
+        Route::get('/news', 'NewsController@index')->name('news');
+        Route::get('/new/{id}', 'NewsController@show')->name('new');
+        Route::get('/agents', 'DistributorsController@index')->name('agents');
+        Route::get('/appointement', 'AppointementController@index')->name('appointement'); 
+        Route::post('/appointement_store', 'AppointementController@store')->name('appointement.store');
+        Route::get('/job', 'JobController@index')->name('job'); 
+        Route::post('/job_store', 'JobController@store')->name('job.store');
+        Route::post('job/media', 'JobController@storeMedia')->name('storeMedia');
+        Route::post('subscription', 'ContactusController@subscription')->name('subscription.store');
+        
+    
+
+          });

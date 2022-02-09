@@ -9,10 +9,6 @@ use Illuminate\Http\Response;
 
 class StoreAppointmentRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return Gate::allows('appointment_create');
-    }
 
     public function rules()
     {
@@ -24,7 +20,9 @@ class StoreAppointmentRequest extends FormRequest
             'phone' => [
                 'string',
                 'required',
-            ],
+                'size:10',
+                'regex:/(05)[0-9]{8}/', 
+            ],  
             'company' => [
                 'string',
                 'required',

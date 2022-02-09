@@ -12,6 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use Alert;
 
 class AboutUsController extends Controller
 {
@@ -21,9 +22,9 @@ class AboutUsController extends Controller
     {
         abort_if(Gate::denies('about_us_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $aboutuses = AboutUs::with(['media'])->get();
+        $aboutUs = AboutUs::first();
 
-        return view('admin.aboutuses.index', compact('aboutuses'));
+        return view('admin.aboutuses.edit', compact('aboutUs'));
     }
 
     public function create()
@@ -59,8 +60,9 @@ class AboutUsController extends Controller
         return view('admin.aboutuses.edit', compact('aboutUs'));
     }
 
-    public function update(UpdateAboutUsRequest $request, AboutUs $aboutUs)
+    public function update(UpdateAboutUsRequest $request)
     {
+        $aboutUs=AboutUs::first();
         $aboutUs->update($request->all());
 
         if ($request->input('phote', false)) {
@@ -84,6 +86,9 @@ class AboutUsController extends Controller
         } elseif ($aboutUs->logo) {
             $aboutUs->logo->delete();
         }
+
+        Alert::success('تم  بنجاح', 'تم  تعديل الإعدادات بنجاح ');
+        
 
         return redirect()->route('admin.aboutuses.index');
     }
