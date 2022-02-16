@@ -318,6 +318,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 78,
+                'title' => 'company_development_create',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'company_development_edit',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'company_development_show',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'company_development_delete',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'company_development_access',
+            ],
+            [
+                'id'    => 83,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -149,7 +149,7 @@
                                 <span>رؤيتــنا</span>
                                     <p>    {{ $aboutUs->vision ?? '' }}</p>
                             <div class="theme-btn">
-                                <a href="target.html" class="default-btn">
+                                <a href="{{route('frontend.target') }}" class="default-btn">
                                    المزيد
                                 </a>
                             </div>
@@ -201,7 +201,7 @@
                 </div>
 
                 <div class="project-btn text-center">
-                    <p>عرض جميع المشاريع<a href="project.html"> المزيد </a></p>
+                    <p>عرض جميع المشاريع<a href="{{route('frontend.projects') }}"> المزيد </a></p>
                 </div>
             </div>
         </section>
@@ -288,7 +288,7 @@
                     </div>
     
                     <div class="blog-link text-center">
-                        <p>عرض جميع الأخبار <a href="blog.html">المزيد</a></p>
+                        <p>عرض جميع الأخبار <a href="{{route('frontend.news') }}">المزيد</a></p>
                     </div>
                 </div>
             </section>  

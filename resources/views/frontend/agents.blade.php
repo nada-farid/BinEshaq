@@ -19,7 +19,9 @@
                     @foreach ($distributors as $distributor)
                     @php
                     if($distributor->photo){
-                    $image=$distributor->photo->getUrl();
+                    foreach($distributor->photo as $photo)
+                    $image=$photo->getUrl();
+                  
                     }
                     else {
                      $image=asset('frontend/assets/imgimg/company/2..jpg');

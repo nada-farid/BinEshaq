@@ -38,8 +38,8 @@
         <div class="service-slider owl-carousel owl-theme">
             @foreach ($services as $service )
             @php 
-            if($service->phote){
-              $image=$service->phote->getUrl('');
+            if($service->photo){
+              $image=$service->photo->getUrl('');
             }
 
              else {

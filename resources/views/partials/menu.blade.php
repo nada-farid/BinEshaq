@@ -189,6 +189,16 @@
                 </a>
             </li>
         @endcan
+        @can('company_development_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.company-developments.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/company-developments") || request()->is("admin/company-developments/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-building c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.companyDevelopment.title') }}
+                </a>
+            </li>
+        @endcan
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">

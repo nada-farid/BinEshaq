@@ -34,8 +34,8 @@
                 <div class="service-details-slider owl-carousel owl-theme">
                     <div class="slider-img">
                         @php
-                        if($service->phote){
-                            $image=$service->phote->getUrl('');
+                        if($service->photo){
+                            $image=$service->photo->getUrl('');
                           }
               
                            else {
@@ -121,8 +121,8 @@
             <div class="service-items">
                 <div class="service-img">
                     @php
-                    if($service->phote){
-                        $image=$service->phote->getUrl('');
+                    if($service->photo){
+                        $image=$service->photo->getUrl('');
                       }
           
                        else {

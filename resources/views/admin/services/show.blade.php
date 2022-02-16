@@ -53,8 +53,8 @@
                         </th>
                         <td>
                             @if($service->photo)
-                                <a href="{{ $service->photo->getUrl() }}" target="_blank">
-                                    {{ trans('global.view_file') }}
+                                <a href="{{ $service->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $service->photo->getUrl('thumb') }}">
                                 </a>
                             @endif
                         </td>

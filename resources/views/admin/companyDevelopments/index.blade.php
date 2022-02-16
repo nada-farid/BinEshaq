@@ -1,44 +1,38 @@
 @extends('layouts.admin')
 @section('content')
-@can('service_create')
+@can('company_development_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.services.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.service.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.company-developments.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.companyDevelopment.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.service.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.companyDevelopment.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Service">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-CompanyDevelopment">
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.id') }}
+                            {{ trans('cruds.companyDevelopment.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.name') }}
+                            {{ trans('cruds.companyDevelopment.fields.year') }}
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.breif_summery') }}
+                            {{ trans('cruds.companyDevelopment.fields.description') }}
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.description') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.service.fields.photo') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.service.fields.photo_2') }}
+                            {{ trans('cruds.companyDevelopment.fields.photo') }}
                         </th>
                         <th>
                             &nbsp;
@@ -46,52 +40,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($services as $key => $service)
-                        <tr data-entry-id="{{ $service->id }}">
+                    @foreach($companyDevelopments as $key => $companyDevelopment)
+                        <tr data-entry-id="{{ $companyDevelopment->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $service->id ?? '' }}
+                                {{ $companyDevelopment->id ?? '' }}
                             </td>
                             <td>
-                                {{ $service->name ?? '' }}
+                                {{ $companyDevelopment->year ?? '' }}
                             </td>
                             <td>
-                                {{ $service->breif_summery ?? '' }}
+                                {{ $companyDevelopment->description ?? '' }}
                             </td>
                             <td>
-                                {{ $service->description ?? '' }}
-                            </td>
-                            <td>
-                                @if($service->photo)
-                                    <a href="{{ $service->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $service->photo->getUrl('thumb') }}">
+                                @if($companyDevelopment->photo)
+                                    <a href="{{ $companyDevelopment->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $companyDevelopment->photo->getUrl('thumb') }}">
                                     </a>
                                 @endif
                             </td>
                             <td>
-                                @if($service->photo_2)
-                                    <a href="{{ $service->photo_2->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $service->photo_2->getUrl('thumb') }}">
-                                    </a>
-                                @endif
-                            </td>
-                            <td>
-                                @can('service_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.services.show', $service->id) }}">
+                                @can('company_development_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.company-developments.show', $companyDevelopment->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
 
-                                @can('service_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.services.edit', $service->id) }}">
+                                @can('company_development_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.company-developments.edit', $companyDevelopment->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('service_delete')
-                                    <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('company_development_delete')
+                                    <form action="{{ route('admin.company-developments.destroy', $companyDevelopment->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -116,11 +100,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('service_delete')
+@can('company_development_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.services.massDestroy') }}",
+    url: "{{ route('admin.company-developments.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -151,7 +135,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 25,
   });
-  let table = $('.datatable-Service:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-CompanyDevelopment:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

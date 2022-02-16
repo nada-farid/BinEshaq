@@ -89,7 +89,7 @@
         <div class="navbar-area navbar-style-two">
             <!-- Menu For Mobile Device -->
             <div class="mobile-nav">
-                <a href="index.html" class="logo">
+                <a href="{{route('frontend.home')}}" class="logo">
                     @php 
                     if($aboutUs->logo){
                       $image=$aboutUs->logo->getUrl('logo');
@@ -107,7 +107,7 @@
             <div class="main-nav">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="{{route('frontend.home')}}">
                             <img src="{{ $image }}" alt="logo">
                         </a>
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -120,7 +120,7 @@
                                     <a href="#" class="nav-link dropdown-toggle">عن المؤسسة</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">عن المؤسسة</a>
+                                            <a href="{{route('frontend.about') }}" class="nav-link">عن المؤسسة</a>
                                              <a href="{{route('frontend.target') }}" class="nav-link">الأهداف </a>
                                              <a href="{{route('frontend.vision') }}"class="nav-link">الرؤية </a>
                                         </li>
@@ -228,7 +228,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="index.html">
+                                <a href="{{route('frontend.home')}}">
                                     <img src="{{ $image }}" alt="logo"> 
                                 </a>
                             </div>
@@ -285,22 +285,22 @@
                             <h3>روابط سريعة</h3>
                              <ul>
                                 <li>
-                                    <a href="#">طلب خدمة</a>
+                                    <a href="{{route('frontend.appointement') }}">طلب خدمة</a>
                                 </li>
                                 <li>
-                                    <a href="#">طلب وظيفة</a>
+                                    <a href="{{route('frontend.job') }}">طلب وظيفة</a>
                                 </li>
                                 <li>
-                                    <a href="#">المشروعات</a>
+                                    <a href="{{route('frontend.projects') }}">المشروعات</a>
                                 </li>
                                 <li>
-                                    <a href="#">نبذة عنا</a>
+                                    <a ref="{{route('frontend.appointement') }}">نبذة عنا</a>
                                 </li>
                                 <li>
-                                    <a href="#">مشروعتنا</a>
+                                    <a href="{{route('frontend.services') }}">خدماتنا</a>
                                 </li>
                                 <li>
-                                    <a href="#">تواصل معنا</a>
+                                    <a href="{{route('frontend.contact') }}">تواصل معنا</a>
                                 </li>
                             </ul>
                         </div>

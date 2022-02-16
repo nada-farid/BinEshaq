@@ -27,12 +27,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Experience
     Route::delete('experiences/destroy', 'ExperienceController@massDestroy')->name('experiences.massDestroy');
     Route::resource('experiences', 'ExperienceController');
-
+  
     // Services
-    Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
-    Route::post('services/media', 'ServicesController@storeMedia')->name('services.storeMedia');
-    Route::post('services/ckmedia', 'ServicesController@storeCKEditorImages')->name('services.storeCKEditorImages');
-    Route::resource('services', 'ServicesController');
+   Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
+   Route::post('services/media', 'ServicesController@storeMedia')->name('services.storeMedia');
+   Route::post('services/ckmedia', 'ServicesController@storeCKEditorImages')->name('services.storeCKEditorImages');
+   Route::resource('services', 'ServicesController');
 
     // Projects
     Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
@@ -87,6 +87,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Subscription
     Route::delete('subscriptions/destroy', 'SubscriptionController@massDestroy')->name('subscriptions.massDestroy');
     Route::resource('subscriptions', 'SubscriptionController');
+
+    // Company Development
+    Route::delete('company-developments/destroy', 'CompanyDevelopmentController@massDestroy')->name('company-developments.massDestroy');
+    Route::post('company-developments/media', 'CompanyDevelopmentController@storeMedia')->name('company-developments.storeMedia');
+    Route::post('company-developments/ckmedia', 'CompanyDevelopmentController@storeCKEditorImages')->name('company-developments.storeCKEditorImages');
+    Route::resource('company-developments', 'CompanyDevelopmentController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -103,6 +109,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/contact', 'ContactusController@index')->name('contact');
         Route::post('/contact_store', 'ContactusController@store')->name('contact.store');
+        Route::get('/about', 'AboutController@about')->name('about');
         Route::get('/target', 'AboutController@target')->name('target');
         Route::get('/vision', 'AboutController@vision')->name('vision');
         Route::get('/services', 'ServiceController@index')->name('services');

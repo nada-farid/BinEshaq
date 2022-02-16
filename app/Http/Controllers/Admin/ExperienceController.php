@@ -17,9 +17,10 @@ class ExperienceController extends Controller
     {
         abort_if(Gate::denies('experience_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $experiences = Experience::all();
+        $experience = Experience::first();
+        
 
-        return view('admin.experiences.index', compact('experiences'));
+        return view('admin.experiences.edit', compact('experience'));
     }
 
     public function create()
@@ -45,6 +46,8 @@ class ExperienceController extends Controller
 
     public function update(UpdateExperienceRequest $request, Experience $experience)
     {
+        
+        $experience = Experience::first();
         $experience->update($request->all());
 
         return redirect()->route('admin.experiences.index');

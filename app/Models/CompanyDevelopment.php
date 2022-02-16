@@ -9,16 +9,15 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class Service extends Model implements HasMedia
+class CompanyDevelopment extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasMediaTrait;
 
-    public $table = 'services';
+    public $table = 'company_developments';
 
     protected $appends = [
         'photo',
-        'photo_2',
     ];
 
     protected $dates = [
@@ -28,8 +27,7 @@ class Service extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
-        'breif_summery',
+        'year',
         'description',
         'created_at',
         'updated_at',
@@ -45,18 +43,6 @@ class Service extends Model implements HasMedia
     public function getPhotoAttribute()
     {
         $file = $this->getMedia('photo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
-
-        return $file;
-    }
-
-    public function getPhoto2Attribute()
-    {
-        $file = $this->getMedia('photo_2')->last();
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
