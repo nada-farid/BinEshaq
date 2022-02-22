@@ -15,6 +15,11 @@ class Slider extends Model implements HasMedia
     use HasMediaTrait;
 
     public $table = 'sliders';
+    public const status = [
+        '0' => 'غير مفعلة ',
+        '1' => '  مفعلة',
+       
+    ];
 
     protected $appends = [
         'photo',
@@ -37,6 +42,7 @@ class Slider extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview2')->fit('crop', 1920, 902);
     }
 
     public function getPhotoAttribute()
@@ -46,6 +52,7 @@ class Slider extends Model implements HasMedia
             $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
             $item->preview = $item->getUrl('preview');
+            $item->preview = $item->getUrl('preview2');
         });
 
         return $files;

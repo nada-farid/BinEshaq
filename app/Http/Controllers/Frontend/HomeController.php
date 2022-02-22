@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\Project;
 use App\Models\Product;
 use App\Models\News;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -22,8 +23,9 @@ class HomeController extends Controller
         $projects=Project::with(['media'])->get()->take(3);
         $products=Product::with(['media'])->get()->take(4);
         $news=News::with(['media'])->get()->take(3);
+        $sliders=Slider::where('status','1')->with(['media'])->get();
 
 
-     return view('frontend.home',compact('aboutUs','experience','services','projects','products','news'));
+     return view('frontend.home',compact('aboutUs','experience','services','projects','products','news','sliders'));
     }
 }

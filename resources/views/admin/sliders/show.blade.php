@@ -40,7 +40,8 @@
                             {{ trans('cruds.slider.fields.status') }}
                         </th>
                         <td>
-                            {{ $slider->status }}
+                            {{ App\Models\Slider::status[ $slider->status] ?? '' }}
+                          
                         </td>
                     </tr>
                 </tbody>

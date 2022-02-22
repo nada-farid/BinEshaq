@@ -50,14 +50,14 @@
                     if ("center" === u) {
                         var e = window.innerWidth || document.documentElement.clientWidth,
                             n = e / 2 - 22 + "px";
-                        w = "left:" + n + ";right:auto;", C ? jQuery(".meanmenu-reveal").animate({
+                        w = "left:" + n + ";left:auto;", C ? jQuery(".meanmenu-reveal").animate({
                             left: n
                         }) : jQuery(".meanmenu-reveal").css("left", n)
                     }
                 },
                 A = !1,
                 E = !1;
-            "right" === u && (w = "right:" + m + ";left:auto;"), "left" === u && (w = "left:" + m + ";right:auto;"), x();
+            "left" === u && (w = "left:" + m + ";left:auto;"), "left" === u && (w = "right:" + m + ";left:auto;"), x();
             var M = "",
                 P = function() {
                     M.html(jQuery(M).is(".meanmenu-reveal.meanclose") ? r : s)

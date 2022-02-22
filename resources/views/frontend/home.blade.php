@@ -1,34 +1,30 @@
 @extends('layouts.frontend')
 
  @section('content')
-<!-- Banner Section Start -->
-<div class="banner-slider owl-carousel owl-theme">
-    <div class="slider-items slider-bg1">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="container">
-                    <div class="slider-text">
-                        <p>{{$aboutUs->breif }}</p>
-                    </div>
-                    
-                </div>
+        <!-- Banner Section Start -->
+       
+        <div id="slider-wrap">
+            @isset($sliders)
+            <ul id="slider">
+           
+                @foreach ($sliders as $slider )
+                  @foreach($slider->photo as $key => $media)
+              <li class="slide showing" style="background: url('{{$media->getUrl('preview2')}}') no-repeat center center; background-size: cover;">
+                <h1>{{$aboutUs->breif }}</h1>
+              </li> 
+                @endforeach
+               @endforeach
+            </ul>
+            @endisset)
+            
+            <button id="next" onclick="next();">التالي</button>
+            <button id="prev" onclick="prev();">السابق</button>
+        
+            <div id="slider-dots">
             </div>
         </div>
-    </div>
-
-    <div class="slider-items slider-bg2">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="container">
-                    <div class="slider-text">
-                        <p>{{$aboutUs->breif }}</p>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        
+                <!-- Banner Section End -->
 <!-- Banner Section End -->
  <!-- About Section Start -->
  <section class="about-style-two pt-100 pb-70">
@@ -372,3 +368,132 @@
             </section>
             <!-- Contact Section End -->
  @endsection
+ @section('scripts')
+ <script>// slide rotation
+
+    var slides = document.getElementsByClassName("slide");
+    var rotator = setInterval(changeSlide, 2000);
+    
+    function changeSlide(){												// run this every 2 seconds
+    
+        for(var i=0; i<slides.length; i++){								// loop through all slides
+            
+            if(slides[i].classList.contains("showing")){				// if it's the active slide
+            
+                slides[i].classList.remove("showing");					// remove the active class
+                
+                var nextslide = i+1;									// get the next slide
+                if(nextslide>=slides.length){							// if it would go past the number of slides, send it back to the first
+                    nextslide = 0;										
+                }
+                
+                slides[nextslide].classList.add("showing");				// add active class to the next slide
+                sliderDots[nextslide].classList.add("active");			// change dot to next slide
+                sliderDots[i].classList.remove("active");				// remove the other dot
+                
+                i=slides.length;										// end the for loop after the slide is changed once
+            }
+        }
+    }
+    
+    // nav dots
+    var sliderDots = [];
+    
+    for(let j=0; j<slides.length; j++){									// for every slide there is
+        
+        var dot = document.createElement("span");						// create a span
+        sliderDots.push(dot);											// add it to sliderDots array
+        document.getElementById("slider-dots").appendChild(sliderDots[j]);	// add it to the html in the slider-dots container
+        sliderDots[0].classList.add("active");							// make the first dot active
+    
+        sliderDots[j].onclick = function() {							// make an onclick function for each dot
+            
+            for(var g=0; g<slides.length; g++){							// cycle through all dots
+                sliderDots[g].classList.remove("active");				// and remove active class
+                slides[g].classList.remove("showing");					// remove active class from slides
+            }
+            this.classList.add("active");								// add active to clicked dot
+            slides[j].classList.add("showing");							// add active class to slide clicked
+        }
+    }
+    
+    // prev/next button
+    function prev(){
+    
+        for(var i=0; i<slides.length; i++){
+            
+            if(slides[i].classList.contains("showing")){
+            
+                slides[i].classList.remove("showing");
+                
+                var nextslide = i-1;
+                if(nextslide<0){
+                    nextslide = slides.length-1;
+                }
+                
+                slides[nextslide].classList.add("showing");
+                sliderDots[nextslide].classList.add("active");
+                sliderDots[i].classList.remove("active");
+                
+                clearInterval(rotator);
+                rotator = setInterval(changeSlide, 2000);
+                i=slides.length;
+            }
+        }
+    }
+    
+    function next(){
+    
+        for(var i=0; i<slides.length; i++){
+            
+            if(slides[i].classList.contains("showing")){
+            
+                slides[i].classList.remove("showing");
+                
+                var nextslide = i+1;
+                if(nextslide>=slides.length){
+                    nextslide = 0;
+                }
+                
+                slides[nextslide].classList.add("showing");
+                sliderDots[nextslide].classList.add("active");
+                sliderDots[i].classList.remove("active");
+                
+                clearInterval(rotator);
+                rotator = setInterval(changeSlide, 2000);
+                i=slides.length;
+            }
+        }
+    }
+    
+    // pause on hover
+    document.getElementById("slider").onmouseover = function() {
+        clearInterval(rotator);
+    }
+    
+    document.getElementById("slider").onmouseout = function() {
+        clearInterval(rotator);
+        rotator = setInterval(next, 2000);
+    
+    }
+    
+    // arrow keys
+    document.addEventListener("keydown", function(key) {
+    
+        switch(key.keyCode){
+            case 37:
+                prev();
+                clearInterval(rotator);
+                rotator = setInterval(next, 2000);
+                break;
+            
+            case 39:
+                next();
+                clearInterval(rotator);
+                rotator = setInterval(next, 2000);
+                break;
+        }
+    
+    });
+    </script>
+    @endsection

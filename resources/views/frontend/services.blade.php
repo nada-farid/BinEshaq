@@ -39,7 +39,7 @@
             @foreach ($services as $service )
             @php 
             if($service->photo){
-              $image=$service->photo->getUrl('');
+              $image=$service->photo->getUrl('preview2');
             }
 
              else {

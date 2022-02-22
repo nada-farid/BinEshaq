@@ -86,9 +86,10 @@ $yellow-color:#00b5cb;
 
             .logo {
                 position: absolute;
-                left: 15px;
+                top: 10px;
+                right: 15px;
                 z-index: 99999;
-                max-width: 75px;
+                max-width: 150px;
             }
         }
         .mean-container {
@@ -774,17 +775,20 @@ $yellow-color:#00b5cb;
         .mobile-nav {
             display: block;
             position: relative;
-
+            
+            
             .navbar-nav {
                 height: 300px;
                 overflow-y: scroll;
+                
+              
             }
 
             .logo {
                 position: absolute;
-                left: 15px;
+                right: 15px;
                 z-index: 99999;
-                max-width: 75px;
+                max-width: 150px;
             }
         }
         .mean-container {
