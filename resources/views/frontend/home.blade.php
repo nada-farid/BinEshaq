@@ -10,7 +10,7 @@
                 @foreach ($sliders as $slider )
                   @foreach($slider->photo as $key => $media)
               <li class="slide showing" style="background: url('{{$media->getUrl('preview2')}}') no-repeat center center; background-size: cover;">
-                <h1>{{$aboutUs->breif }}</h1>
+                <h1>{{$slider->word }}</h1>
               </li> 
                 @endforeach
                @endforeach

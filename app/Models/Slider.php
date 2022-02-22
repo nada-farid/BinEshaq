@@ -33,6 +33,7 @@ class Slider extends Model implements HasMedia
 
     protected $fillable = [
         'status',
+        'word',
         'created_at',
         'updated_at',
         'deleted_at',

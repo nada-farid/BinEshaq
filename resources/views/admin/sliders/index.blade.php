@@ -32,6 +32,9 @@
                             {{ trans('cruds.slider.fields.status') }}
                         </th>
                         <th>
+                            {{ trans('cruds.slider.fields.word') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -54,6 +57,10 @@
                             </td>
                             <td>
                                 {{ App\Models\Slider::status[ $slider->status] ?? '' }}
+                          
+                            </td>
+                            <td>
+                                {{$slider->word ?? '' }}
                           
                             </td>
                             <td>

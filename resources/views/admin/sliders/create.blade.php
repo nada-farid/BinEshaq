@@ -21,6 +21,16 @@
                 <span class="help-block">{{ trans('cruds.slider.fields.photo_helper') }}</span>
             </div>
             <div class="form-group">
+                <label >{{ trans('cruds.slider.fields.word') }}</label>
+                <input class="form-control {{ $errors->has('word') ? 'is-invalid' : '' }}" type="text" name="word" id="word">
+                @if($errors->has('word'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('word') }}
+                </div>
+            @endif
+            <span class="help-block">{{ trans('cruds.slider.fields.word_helper') }}</span>
+          </div>
+            <div class="form-group">
                 <label class="required">{{ trans('cruds.slider.fields.status') }}</label>
                  <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
                      <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>

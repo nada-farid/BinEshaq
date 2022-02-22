@@ -333,6 +333,8 @@ return [
             'photo_helper'      => ' ',
             'status'            => 'الحالة',
             'status_helper'     => ' ',
+            'word'              => 'نبذة مختصرة',
+            'word_helper'       => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',
